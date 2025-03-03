@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BartenderApp.Views.Masters.Product.ProductAddPage"
+             Title="{Binding PageTitle}">
+    <VerticalStackLayout Padding="15">
+        <ActivityIndicator IsVisible="{Binding LoadingVisible}"
+                        IsRunning="{Binding LoadingVisible}"
+                        Color="#512BD4"
+                        HeightRequest="30"/>
+
+        <Label Text="Nombre" />
+        <Entry Text="{Binding ProductDto.Name}" Margin="0,0,0,10" />
+
+        <Label Text="Precio" />
+        <Entry Text="{Binding ProductDto.Price}" Keyboard="Numeric" Margin="0,0,0,10" />
+
+        <Label Text="Costo" />
+        <Entry Text="{Binding ProductDto.CostPrice}" Keyboard="Numeric" Margin="0,0,0,10" />
+
+        <Label Text="Busqueda" />
+        <Entry Text="{Binding ProductDto.SearchName}" Margin="0,0,0,10" />
+
+        <Button Text="Guardar" Command="{Binding SaveCommand}" />
+    </VerticalStackLayout>
+</ContentPage>
