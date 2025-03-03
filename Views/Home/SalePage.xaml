@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:BartenderApp.DTOs"
+             x:Class="BartenderApp.Views.Home.SalePage"
+             Title="Ventas">
+    <Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="Auto,*" RowSpacing="15" Margin="10,0,10,10">
+        <Label Grid.Row="0" Grid.Column="0" Text="Fecha:" FontSize="Subtitle" Padding="0,10,0,0" FontAttributes="Bold"/>
+        <DatePicker FontFamily="Arial" DateSelected="OnDateChanged"  Grid.Row="0" Grid.Column="1" MaximumDate="{Binding MaxDate}" 
+                    Date="{Binding FilterDate}" Format="D" HorizontalOptions="Center" FontAttributes="Bold"  />
+        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Nueva Cuenta" Command="{Binding ShowPopupCommand}"></Button>
+        <ScrollView Grid.Row="2" Grid.ColumnSpan="2">
+            <CollectionView ItemsSource="{Binding SaleList}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Vertical">
+                    </LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:SaleDTO">
+                        <Border Padding="10,5" HorizontalOptions="FillAndExpand">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="5"/>
+                            </Border.StrokeShape>
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                                ColumnDefinitions="Auto,Auto,*">
+                                <Label Grid.Row="0" Grid.Column="0" Text="Nombre" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Name}" HorizontalOptions="End"></Label>
+                                <Label Grid.Row="1" Grid.Column="0" Text="Total" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Amount, StringFormat='{0:C0}'}" HorizontalOptions="End"></Label>
+                                <Label Grid.Row="2" Grid.Column="0" Text="Abono" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Pay, StringFormat='{0:C0}'}" HorizontalOptions="End" ></Label>
+                                <Label Grid.Row="3" Grid.Column="0" Text="Debe" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontAttributes="Bold" TextColor="Red" Text="{Binding Debt, StringFormat='{0:C0}'}" HorizontalOptions="End" ></Label>
+                                <Button Grid.Row="4" Grid.Column="0" Margin="5" Text="   Abonar   " Command="{Binding BindingContext.ShowAddPayPopupCommand , Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}"></Button>
+                                <Button Grid.Row="4" Grid.Column="1" Margin="5" Text=" Agregar " Command="{Binding BindingContext.AddDetailCommand , Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}" ></Button>
+                                <Button Grid.Row="4" Grid.Column="2" Margin="5" Text="Detalle" Command="{Binding BindingContext.ViewDetailsCommand , Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" CommandParameter="{Binding}"></Button>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </ScrollView>
+    </Grid>
+</ContentPage>

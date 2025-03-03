@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="BartenderApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:BartenderApp"
+    xmlns:homeViews="clr-namespace:BartenderApp.Views.Home"
+    xmlns:reportViews="clr-namespace:BartenderApp.Views.Reports"
+    xmlns:masterProductViews="clr-namespace:BartenderApp.Views.Masters.Product"
+    Title="BartenderApp">
+    <MenuFlyoutItem Text="MENU" IconImageSource="menu.png" >
+        
+    </MenuFlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Home"
+         Icon="sales_menu_icon.png" >
+            <ShellContent Title="Ventas"
+            ContentTemplate="{DataTemplate homeViews:SalePage}" />
+        </Tab>
+        <Tab Title="Reportes"
+         Icon="reports.png">
+            <ShellContent Title="Reporte de ventas"
+            ContentTemplate="{DataTemplate reportViews:SalesReport}" />
+            <ShellContent Title="Reporte de ventas detalle"
+            ContentTemplate="{DataTemplate reportViews:SalesDetailReport}" />
+            <ShellContent Title="Reporte de productos"
+            ContentTemplate="{DataTemplate reportViews:SalesProductReport}" />
+        </Tab>
+        <Tab Title="Maestros" 
+            Icon="gear.png" >
+            <ShellContent Title="Productos"
+            ContentTemplate="{DataTemplate masterProductViews:ProductsPage}" />
+        </Tab>
+    </FlyoutItem>
+    
+    
+</Shell>
